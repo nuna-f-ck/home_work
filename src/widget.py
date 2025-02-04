@@ -1,15 +1,18 @@
-"""Функция принимает либо номер счета, либо номер карты и маскирует его"""
-def mask_account_card(account_or_card):
+from typing import Any
+
+from src.mascks import get_mask_account, get_mask_card_number
+
+
+def mask_account_card(account_or_card: Any) -> Any:
+    """Функция принимает либо номер счета, либо номер карты и маскирует его"""
     if "Счет" in account_or_card:
-        account_masks = account_or_card[0:4] + " " + "**" + account_or_card[-4:]
-        return account_masks
+        return get_mask_account(account_or_card)
     else:
-        card_mascks = account_or_card[0:-12] + " " + account_or_card[-12:-10] + "** **** " + account_or_card[-4:]
-        return card_mascks
+        return get_mask_card_number(account_or_card)
 
 
-"""Функция принимает дату и возвращает ее в определенном формате"""
-def get_date(time):
+def get_date(time: Any) -> Any:
+    """Функция принимает дату и возвращает ее в определенном формате"""
     time = time[0:10].split("-")
     time = ":".join(time[::-1])
     return time

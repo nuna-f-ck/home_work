@@ -1,8 +1,8 @@
-from typing import Union
+from typing import Any
 
 
-"""Функция принимает номер карты и маскирует его"""
-def get_mask_card_number(num_card: Union[int]) -> int:
+def get_mask_card_number(num_card: Any) -> Any:
+    """Функция принимает номер карты и маскирует его"""
     num_card = str(num_card)
     block_1 = num_card[0:4]
     block_2 = num_card[4:6] + "**"
@@ -12,8 +12,8 @@ def get_mask_card_number(num_card: Union[int]) -> int:
     return masck
 
 
-"""Функция принимает номер карты и возвращает его последние 4 цифры"""
-def get_mask_account(num_card: Union[int]) -> int:
+def get_mask_account(num_card: Any) -> Any:
+    """Функция принимает номер карты и возвращает его последние 4 цифры"""
     num_card = str(num_card)
-    masck = "**" + num_card[12:]
+    masck = "**" + num_card[-4:]
     return masck
