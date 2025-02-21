@@ -1,5 +1,6 @@
-from src.widget import get_date, mask_account_card
 import pytest
+
+from src.widget import get_date, mask_account_card
 
 
 @pytest.mark.parametrize('card_or_account, masck_card_account',
