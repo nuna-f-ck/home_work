@@ -9,8 +9,6 @@ def open_write(file_name, function, ok_or_error=None):
             file.write(f'{function.__name__} ok')
         return function.__name__ + " ok"
     elif ok_or_error == "error":
-        with open(file_name, 'a', encoding='utf-8') as file:
-            file.write(f'{function.__name__}')
         return function.__name__ + " error"
     else:
         return function.__name__
@@ -31,18 +29,25 @@ def log(filename=None):
                 return func(*args, **kwargs)
             except Exception as e:
                 if filename:
+                    with open(filename, 'a', encoding='utf-8') as file:
+                        file.write(f'{func.__name__}, type error: {e.__class__}, input: {args}, {kwargs}')
                     print(open_write(filename, func, "error"))
+                    raise ValueError("Something went wrong!")
                 else:
-                    print(f'{open_write(filename, func)}, type error: {e.__class__}, input: {args, kwargs}')
+                    print(f'{open_write(filename, func)}, type error: {e.__class__}, input: {args}, {kwargs}')
+                    raise ValueError("Something went wrong!")
             return func(*args, **kwargs)
 
         return inner
 
     return wrapper
 
-# filename="mylog.txt"
-# @log(filename="mylog.txt")
-# def my_function(x, y):
-#     return x//y
-#
-# my_function(4, 0)
+
+@log()
+def my_function(x, y):
+    return x // y
+
+
+@log(filename="mylog.txt")
+def my_function_file(x, y):
+    return x // y
