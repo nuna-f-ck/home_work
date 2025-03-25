@@ -43,9 +43,8 @@ def amount_transactions(transaction):
             }
 
             response = requests.get(url, headers=headers)
-
-            status_code = response.status_code
-            result = response.text
-            print(result)
+            data = response.json()
+            print(data)
+            return float(data["result"])
         except Exception as e:
             print(e)
