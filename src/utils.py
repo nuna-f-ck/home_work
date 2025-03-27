@@ -7,6 +7,16 @@ from src.generators import transactions
 from black import JSONDecodeError
 
 
+import logging
+
+logger = logging.getLogger('utils')
+file_handler = logging.FileHandler('logs/utils.log')
+file_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s: %(message)s')
+file_handler.setFormatter(file_formatter)
+logger.addHandler(file_handler)
+logger.setLevel(logging.INFO)
+
+
 def load_transactions(file_path):
     """
     Загружает данные из JSON-файла и возвращает список словарей.

@@ -1,5 +1,14 @@
 from typing import Any
 
+import logging
+
+logger = logging.getLogger('mascks')
+file_handler = logging.FileHandler('logs/mascks.log')
+file_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s: %(message)s')
+file_handler.setFormatter(file_formatter)
+logger.addHandler(file_handler)
+logger.setLevel(logging.INFO)
+
 
 def get_mask_card_number(num_card: Any) -> Any:
     """Функция принимает номер карты и маскирует его"""
