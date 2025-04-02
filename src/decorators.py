@@ -1,9 +1,10 @@
-from fileinput import filename
+
 from functools import wraps
 
 
 def open_write(file_name, function, ok_or_error=None):
-    """Функция создана, чтобы упрощать работу функции log. Она открывает файл и записывает данные либо в консоль, либо в указанный файл"""
+    """Функция создана, чтобы упрощать работу функции log. Она открывает файл и записывает данные либо в консоль,
+    либо в указанный файл"""
     if ok_or_error == "ok":
         with open(file_name, 'a', encoding='utf-8') as file:
             file.write(f'{function.__name__} ok')

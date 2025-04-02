@@ -2,8 +2,6 @@
 
 import json
 
-from src.generators import transactions
-
 from black import JSONDecodeError
 
 import logging

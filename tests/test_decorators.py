@@ -1,5 +1,5 @@
 import pytest
-from src.decorators import log, open_write, my_function, my_function_file
+from src.decorators import log, my_function, my_function_file
 
 
 def test_log_file(capsys):
