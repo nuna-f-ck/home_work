@@ -2,7 +2,7 @@
 
 import json
 
-from black import JSONDecodeError
+from json import JSONDecodeError
 
 import logging
 

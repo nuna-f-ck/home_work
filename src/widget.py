@@ -14,5 +14,5 @@ def mask_account_card(account_or_card: str) -> Any:
 def get_date(time: Any) -> Any:
     """Функция принимает дату и возвращает ее в определенном формате"""
     time = time[0:10].split("-")
-    time = ":".join(time[::-1])
+    time = ".".join(time[::-1])
     return time

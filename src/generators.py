@@ -1,14 +1,23 @@
 def filter_by_currency(my_list, currency, start=0):
     """Функция фильтрует транзакции по заданной валюте"""
-    examination = [x.get("operationAmount").get("currency").get("code") for x in my_list]
-    if currency not in examination:
-        while True:
-            yield "Данной валюты нет в списке транзакций"
-    list_of_currencies = list(
-        filter(lambda x: x.get("operationAmount").get("currency").get("code") == currency, my_list))
-    while True:
-        yield list_of_currencies[start]
-        start += 1
+    sort_list = []
+    for x in my_list:
+        if 'currency_code' in x:
+            if x.get("currency_code") == currency:
+                sort_list.append(x)
+        elif 'operationAmount' in x and 'currency' in x['operationAmount']:
+            if x['operationAmount']['currency'].get("code") == currency:
+                sort_list.append(x)
+    return sort_list
+    # examination = [x.get("operationAmount").get("currency").get("code") for x in my_list]
+    # if currency not in examination:
+    #     while True:
+    #         yield "Данной валюты нет в списке транзакций"
+    # list_of_currencies = list(
+    #     filter(lambda x: x.get("operationAmount").get("currency").get("code") == currency, my_list))
+    # while True:
+    #     yield list_of_currencies[start]
+    #     start += 1
 
 
 def transaction_descriptions(my_list, start=0):
@@ -108,16 +117,3 @@ transactions = (
         }
     ]
 )
-
-# for card_number in card_number_generator(1, 5):
-#     print(card_number)
-
-# filter_by_cur = filter_by_currency(transactions, "USD")
-# output = []
-# for _ in range(3):
-#     output.append(next(filter_by_cur))
-# print(output)
-# for x in my_list:
-#     yield x.get("description")
-
-# print(list(transaction_descriptions(transactions)))
